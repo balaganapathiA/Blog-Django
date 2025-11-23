@@ -9,3 +9,6 @@ def url_redirect(request):
 
 def redirected_page(request):
     return HttpResponse("url redirected succesfully")
+
+def render_page(request):
+    return render(request,"index.html")
