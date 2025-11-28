@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 import logging
 from .models import Post
 # posts = [
@@ -24,7 +24,10 @@ def render_page(request):
 
 def detail_page(request,id):
     # post_details = next((item for item in posts if item["id"] == id),None)
-    post_details=Post.objects.get(pk=id)
+    try:
+        post_details=Post.objects.get(pk=id)
+    except Post.DoesNotExist:
+        raise Http404("404 Page")
     log = logging.getLogger("testing")
     log.debug(f'id {post_details} {id} of detail page')
     return render(request,"detail.html",{"post_details":post_details})
