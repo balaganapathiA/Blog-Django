@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 import logging
 from django.core.paginator import Paginator
-from .models import Post
+from .models import Post,AboutUs
 
 from .forms import ContactForm
 # posts = [
@@ -62,4 +62,5 @@ def contact_page(request):
         return render(request,'contact.html', {'form':form, 'name': name, 'email':email, 'message': message})
     return render(request,'contact.html')
 def about_page(request):
-    return render(request,'about.html')
+    about_content = AboutUs.objects.get(id=1).content
+    return render(request,'about.html',{'about_content':about_content})
