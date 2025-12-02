@@ -61,3 +61,5 @@ def contact_page(request):
             logger.debug(f'Form validation failure {message}')
         return render(request,'contact.html', {'form':form, 'name': name, 'email':email, 'message': message})
     return render(request,'contact.html')
+def about_page(request):
+    return render(request,'about.html')
