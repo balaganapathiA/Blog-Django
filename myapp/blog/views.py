@@ -62,5 +62,9 @@ def contact_page(request):
         return render(request,'contact.html', {'form':form, 'name': name, 'email':email, 'message': message})
     return render(request,'contact.html')
 def about_page(request):
-    about_content = AboutUs.objects.get(id=1).content
+    about_content = AboutUs.objects.first()
+    if about_content is None or not about_content.content:
+        about_content="SOLLA ONNUM ILA"
+    else:
+        about_content=about_content.content
     return render(request,'about.html',{'about_content':about_content})
