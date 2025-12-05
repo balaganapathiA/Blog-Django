@@ -17,6 +17,14 @@
                 {% endif %}
                
             {% endfor %}
+            {% comment %} none field error {% endcomment %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                        <span class="text-danger"> {{error}} </span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
             <div class="my-3">
                 <form method="post">
