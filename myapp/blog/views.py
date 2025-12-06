@@ -80,3 +80,6 @@ def register_page(request):
             messages.success(request,"Register Panniyachi...!.Neenga Ipa Login Pannalam")
             print("register Successfull")
     return render(request,'register.html',{'form':form})
+
+def login_page(request):
+    return render(request,'login.html')
