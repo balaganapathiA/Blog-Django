@@ -31,14 +31,14 @@ class LoginForm(forms.Form):
     username = forms.CharField(label='username', max_length=100, required=True)
     password = forms.CharField(label='password', max_length=100, required=True)
 
-#     def clean(self):
-#         cleaned_data = super().clean()
-#         username = cleaned_data.get("username")
-#         password = cleaned_data.get("password")
-#         if username and password:
-#             user = authenticate(username=username, password=password)
-#             if user is None:
-#                 raise forms.ValidationError("Invalid username or password")
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                raise forms.ValidationError("Invalid username or password")
 
 # class ForgotPasswordForm(forms.Form):
 #     email = forms.EmailField(label='Email', max_length=254, required=True)

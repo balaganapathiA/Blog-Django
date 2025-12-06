@@ -4,7 +4,9 @@ import logging
 from django.core.paginator import Paginator
 from .models import Post,AboutUs
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from .forms import ContactForm,RegisterForm,LoginForm
+from django.contrib.auth import authenticate,login
 # posts = [
 #         {'title':'post1','content':'post 1 content'},
 #         {'title':'post2','content':'post 2 content'},
@@ -86,5 +88,23 @@ def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            print("login Success")
-    return render(request,'login.html',{'form':form})
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            if username and password:
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, "login Panniyachi...!")
+
+                    # Render once for showing message + 2-sec redirect
+                    response = render(request, 'login.html', {'form': form, 'redirect': True})
+
+                    # Clear messages so next page doesn't show them
+                    storage = get_messages(request)
+                    for _ in storage:
+                        pass  
+
+                    return response
+
+    return render(request, 'login.html', {'form': form})
+
