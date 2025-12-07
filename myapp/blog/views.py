@@ -108,3 +108,5 @@ def login_page(request):
 
     return render(request, 'login.html', {'form': form})
 
+def dashboard_page(request):
+    return render(request,'dashboard.html')
