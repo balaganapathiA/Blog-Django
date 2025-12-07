@@ -5,34 +5,7 @@
         <div class="col-4">
             <h3>Register</h3>
             <div class="">
-                 <!-- Error messages -->
-            {% for field in form  %}
-                {% if field.errors %}
-                    <div class="col-12">
-                        <span class="fw-bold"> {{field.label_tag}} </span>
-                        {% for error in field.errors %}
-                        <span class="text-danger"> {{error}} </span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-               
-            {% endfor %}
-            {% comment %} none field error {% endcomment %}
-                {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {% for error in form.non_field_errors %}
-                        <span class="text-danger"> {{error}} </span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                {% comment %} success message {% endcomment %}
-                {% if messages %}
-                    <div class="alert alert-success">
-                        {% for message in messages %}
-                        <span class="text-success"> {{message}} </span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
+            {% include "./includes/message.html" %}
             </div>
             <div class="my-3">
                 <form method="post">

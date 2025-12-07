@@ -8,45 +8,8 @@
             <h3>Login</h3>
             <div class="">
                 <div class="col-12">
-                      <!-- Error messages -->
-            {% for field in form  %}
-                {% if field.errors %}
-                    <div class="col-12">
-                        <span class="fw-bold"> {{field.label_tag}} </span>
-                        {% for error in field.errors %}
-                        <span class="text-danger"> {{error}} </span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-               
-            {% endfor %}
+                    {% include "./includes/message.html" %}
                 </div>
-            </div>
-
-            {% comment %} none field error {% endcomment %}
-                {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {% for error in form.non_field_errors %}
-                        <span class="text-danger"> {{error}} </span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                {% comment %} success message {% endcomment %}
-                {% if messages %}
-                     <div class="d-flex justify-content-center">
-                        {% for message in messages %}
-                       <div class="alert alert-success alert-dismissible fade show" role="alert">  {{message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-            {% comment %} <div class="container mt-3">
-                <div class="d-flex justify-content-center">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert"> 
-                        Message 
-                    </div>
-                </div>
-            </div> {% endcomment %}
     
             <div class="my-3">
                 <form method="post">
