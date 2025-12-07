@@ -81,6 +81,7 @@ def register_page(request):
             user.save()
             messages.success(request,"Register Panniyachi...!.Neenga Ipa Login Pannalam")
             print("register Successfull")
+            return redirect("login")
     return render(request,'register.html',{'form':form})
 
 def login_page(request):
