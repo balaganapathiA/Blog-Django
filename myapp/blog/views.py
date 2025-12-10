@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from .models import Post,AboutUs
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from .forms import ContactForm,RegisterForm,LoginForm
+from .forms import ContactForm,RegisterForm,LoginForm,ForgotPasswordForm
 from django.contrib.auth import authenticate,login,logout
 # posts = [
 #         {'title':'post1','content':'post 1 content'},
@@ -117,5 +117,9 @@ def logout_page(request):
     return redirect('login')
 
 def forgot_page(request):
+    form = ForgotPasswordForm()
+    if request.method == 'POST':
+        #form
+        form = ForgotPasswordForm(request.POST)
     return render(request,'forgot_password.html')
     
