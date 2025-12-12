@@ -181,3 +181,5 @@ def reset_page(request, uidb64, token):
                 messages.error(request,'The password reset link is invalid')
 
     return render(request,'reset_password.html', {'form': form})
+def new_post_page(request):
+    return render(request,'new_post.html')
