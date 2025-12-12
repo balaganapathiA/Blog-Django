@@ -121,7 +121,13 @@ def login_page(request):
     return render(request, 'login.html', {'form': form})
 
 def dashboard_page(request):
-    return render(request,'dashboard.html')
+    all_posts = Post.objects.filter(user=request.user)
+
+    # paginate
+    paginator = Paginator(all_posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'dashboard.html',{'posts':page_obj})
 
 def logout_page(request):
     logout(request)
